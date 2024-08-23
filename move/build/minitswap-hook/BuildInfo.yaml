@@ -1,0 +1,40 @@
+---
+compiled_package_info:
+  package_name: minitswap-hook
+  address_alias_instantiation:
+    minitia_std: "0000000000000000000000000000000000000000000000000000000000000001"
+    publisher: 000000000000000000000000aff0bf456a4951b0906d06e212921cde1ffcd4ef
+    relayer: 0000000000000000000000003d18d54532fc42e567090852db6eb21fa528f952
+    std: "0000000000000000000000000000000000000000000000000000000000000001"
+  source_digest: BF574AD68EDA266710C582827178CCAD09C57149A09668D7D459D863D1EAF8F7
+  build_flags:
+    dev_mode: false
+    test_mode: false
+    generate_docs: false
+    generate_abis: false
+    generate_move_model: true
+    full_model_generation: false
+    install_dir: "."
+    force_recompilation: false
+    additional_named_addresses: {}
+    architecture: ~
+    fetch_deps_only: false
+    skip_fetch_latest_git_deps: false
+    compiler_config:
+      bytecode_version: ~
+      known_attributes:
+        - bytecode_instruction
+        - deprecated
+        - event
+        - expected_failure
+        - native_interface
+        - test
+        - test_only
+        - verify_only
+        - view
+      skip_attribute_checks: false
+      compiler_version: ~
+dependencies:
+  - MinitiaStdlib
+  - MoveNursery
+  - MoveStdlib
