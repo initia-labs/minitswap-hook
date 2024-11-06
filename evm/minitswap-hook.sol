@@ -16,11 +16,11 @@ contract MinitSwapHook {
                 COSMOS_CONTRACT.to_cosmos_address(msg.sender),
                 '","to":"',
                 receiver,
-                '","amount": Coin { denom:',
+                '","amount": [ { "denom":"',
                 denom,
-                ",amount:",
+                '","amount":"',
                 amount,
-                "}}"
+                "}]}"
             )
         );
         COSMOS_CONTRACT.execute_cosmos(message);
