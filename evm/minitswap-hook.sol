@@ -3,8 +3,8 @@ pragma solidity ^0.8.24;
 
 import "./i_cosmos/ICosmos.sol";
 
-contract MinitSwapHook {
-    function minitswap_hook(
+contract MinitswapHook {
+    function minitswapHook(
         string memory denom,
         uint amount,
         string memory receiver
