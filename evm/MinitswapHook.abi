@@ -1,0 +1,1 @@
+[{"inputs":[{"internalType":"string","name":"denom","type":"string"},{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"string","name":"receiver","type":"string"}],"name":"minitswapHook","outputs":[],"stateMutability":"nonpayable","type":"function"}]
