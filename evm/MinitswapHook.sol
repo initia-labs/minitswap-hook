@@ -12,7 +12,7 @@ contract MinitswapHook {
         uint amount,
         string memory receiver
     ) public {
-        IERC20(COSMOS_CONTRACT.to_evm_address(denom)).transferFrom(
+        IERC20(COSMOS_CONTRACT.to_erc20(denom)).transferFrom(
             msg.sender,
             address(this),
             amount
