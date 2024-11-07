@@ -1,10 +1,12 @@
 // SPDX-License-Identifier: SEE LICENSE IN LICENSE
 pragma solidity ^0.8.24;
-
+import "./Strings.sol";
 import "./interface/ICosmos.sol";
 import "./interface/IERC20.sol";
 
 contract MinitswapHook {
+    using Strings for uint256;
+
     function minitswapHook(
         string memory denom,
         uint amount,
@@ -26,7 +28,7 @@ contract MinitswapHook {
                 '","amount":{ "denom":"',
                 denom,
                 '","amount":"',
-                amount,
+                amount.toString(),
                 '"}}'
             )
         );
