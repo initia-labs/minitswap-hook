@@ -6,19 +6,19 @@ minitswap hook contract
 
 ## Wasmvm
 
-### 1. Move directory to wasm
+### 1. Move to the `wasm` directory
 
 ```bash
 cd wasm
 ```
 
-### 2. Build contract
+### 2. Build the contract
 
 ```bash
 cargo build --target wasm32-unknown-unknown --release
 ```
 
-### 3. Publish contract without admin
+### 3. Publish the contract without an admin
 
 ```typescript
 import { MsgStoreCode, MsgInstantiateContract } from '@initia/initia.js';
@@ -37,7 +37,7 @@ async function storeCode() {
 async function instantiateContract() {
   const msg = new MsgInstantiateContract(
     key.accAddress,
-    undefined, // Contract should not upgradable
+    undefined, // Contract should not be upgradeable
     CODE_ID,
     'minitswap-hook',
     Buffer.from('{}').toString('base64'),
@@ -56,7 +56,7 @@ async function instantiateContract() {
 import { MsgExecuteMessages, MsgUpdateACL } from '@initia/initia.js';
 async function updateACL() {
   const msg = new MsgExecuteMessages(key.accAddress, [
-    // key must be admin key
+    // The key must be an admin key
     new MsgUpdateACL(
       'init1gz9n8jnu9fgqw7vem9ud67gqjk5q4m2w0aejne',
       '<HOOK_MODULE_ADDR>',
@@ -72,15 +72,15 @@ async function updateACL() {
 
 ## Movevm
 
-### 1. Move directory to move
+### 1. Move to the `move` directory
 
 ```bash
 cd move
 ```
 
-### 2. Update module address of Move.toml
+### 2. Update the module address in `Move.toml`
 
-Highly recommand to use new address, to make sure miniswap is the only module of the address
+It is highly recommended to use a new address to ensure that minitswap is the only module for that address.
 
 ```toml
 [package]
@@ -96,13 +96,13 @@ publisher = "<YOUR-MODULE-ADDR>"
 InitiaStdlib = { git = "https://github.com/initia-labs/move-natives.git", subdir = "initia_stdlib", rev = "0a6aa67b41087c56b6fe7ae54e75c0ecceb388a8" }
 ```
 
-### 3. Build module
+### 3. Build the module
 
 ```bash
 initiad move build
 ```
 
-### 4. Publish module with immutable option
+### 4. Publish the module with the immutable option
 
 ```typescript
 import { MsgPublish } from '@initia/initia.js';
@@ -125,7 +125,7 @@ async function publishModule() {
 import { MsgExecuteMessages, MsgUpdateACL } from '@initia/initia.js';
 async function updateACL() {
   const msg = new MsgExecuteMessages(key.accAddress, [
-    // key must be admin key
+    // The key must be an admin key
     new MsgUpdateACL(
       'init1gz9n8jnu9fgqw7vem9ud67gqjk5q4m2w0aejne',
       '<HOOK_MODULE_ADDR>',
@@ -141,19 +141,19 @@ async function updateACL() {
 
 ## Evm
 
-### 1. Move directory to evm
+### 1. Move to the `evm` directory
 
 ```bash
 cd evm
 ```
 
-### 2. Build contract
+### 2. Build the contract
 
 ```bash
 solcjs ./MinitswapHook.sol --bin
 ```
 
-### 3. Publish contract
+### 3. Publish the contract
 
 ```typescript
 import { MsgCreate } from '@initia/initia.js';
@@ -179,7 +179,7 @@ async function instantiateContract() {
 import { MsgExecuteMessages, MsgUpdateACL } from '@initia/initia.js';
 async function updateACL() {
   const msg = new MsgExecuteMessages(key.accAddress, [
-    // key must be admin key
+    // The key must be an admin key
     new MsgUpdateACL(
       'init1gz9n8jnu9fgqw7vem9ud67gqjk5q4m2w0aejne',
       '<HOOK_MODULE_ADDR>',
