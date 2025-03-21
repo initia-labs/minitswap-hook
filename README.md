@@ -1,8 +1,18 @@
 # minitswap-hook
 
-minitswap hook contract
+This repository contains instructions for deploying the minitswap hook contract in multiple environments—WasmVM, MoveVM, and EVM. Despite the different build tools and processes in each environment, the overall steps follow a common pattern:
 
-# Publish Guide
+1. Build the contract.
+  - For WasmVM, this involves compiling the Rust source to a .wasm file.
+  - For MoveVM, you compile the Move source into .mv bytecode.
+  - For EVM, you compile the Solidity source into EVM bytecode.
+2. Deploy the contract.
+  -Publish your compiled contract (Wasm, Move, or EVM bytecode) to the Initia chain using MsgStoreCode, MsgPublish, or MsgCreate respectively.
+  - Instantiate (if needed) and finalize the deployment so it’s recognized on-chain.
+3. Update ACL (Access Control List) to allow IBC hooks.
+  - In all three environments, you need to grant IBC hook permissions via MsgUpdateACL. This ensures the contract can participate in inter-blockchain communication (IBC) as intended.
+
+# Deployment Guide
 
 ## Wasmvm
 
@@ -80,7 +90,7 @@ cd move
 
 ### 2. Update the module address in `Move.toml`
 
-It is highly recommended to use a new address to ensure that minitswap is the only module for that address.
+It's recommended to use a new address for this contract to ensure that minitswap is the only module at this address, avoiding conflicts with other modules.
 
 ```toml
 [package]
@@ -139,7 +149,7 @@ async function updateACL() {
 }
 ```
 
-## Evm
+## EVM
 
 ### 1. Move to the `evm` directory
 
