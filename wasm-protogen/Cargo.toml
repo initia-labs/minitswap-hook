@@ -1,0 +1,23 @@
+[package]
+name = "msg_initiate_token_withdrawal_proto"
+version = "0.0.1"
+edition = "2021"
+description = ""
+license = ""
+repository = ""
+build = "build.rs"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+# use library feature to disable all instantiate/execute/query exports
+library = []
+
+[dependencies]
+protobuf = { version = "3.4", features = ["with-bytes"] }
+
+[build-dependencies]
+protobuf-codegen = "3.4"
+protoc-bin-vendored = "3"
+protobuf = { version = "3.4" }

@@ -1,0 +1,57 @@
+syntax = "proto3";
+package opinit.opchild.v1;
+
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.FileOptions {
+	optional bool goproto_getters_all = 63001;
+}
+
+option go_package                      = "github.com/initia-labs/OPinit/x/opchild/types";
+option (goproto_getters_all) = false;
+
+extend google.protobuf.FieldOptions {
+  string scalar = 93002;
+  optional bool nullable = 65001;
+	optional string customtype = 65003;
+	optional string moretags = 65006;
+  bool dont_omitempty = 11110005;
+}
+
+extend google.protobuf.MessageOptions {
+	optional bool equal = 64013;
+
+  string name = 11110001;
+}
+
+message Coin {
+  option (equal) = true;
+
+  string denom  = 1;
+  string amount = 2 [
+    (scalar)  = "cosmos.Int",
+    (customtype) = "cosmossdk.io/math.Int",
+    (nullable)   = false,
+    (dont_omitempty) = true
+  ];
+}
+
+extend google.protobuf.MessageOptions {
+  repeated string signer = 11110000;
+}
+
+// MsgInitiateTokenWithdrawal is a message to withdraw a new token from L2 to L1.
+message MsgInitiateTokenWithdrawal {
+  option (signer) = "sender";
+  option (name)           = "opchild/MsgInitiateTokenWithdrawal";
+
+  // the l2 sender address
+  string sender = 1 [(scalar) = "cosmos.AddressString"];
+
+  // to is l1 recipient address
+  string to = 2 [(scalar) = "cosmos.AddressString"];
+
+  // amount is the coin amount to withdraw.
+  Coin amount = 4
+      [(moretags) = "yaml:\"amount\"", (nullable) = false, (dont_omitempty) = true];
+}
