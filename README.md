@@ -192,3 +192,26 @@ async function updateACL() {
   console.log(broadcastRes);
 }
 ```
+
+## Update ACL with minitiad
+
+### 1. Create Msg File
+
+```json
+{
+  "messages": [
+    {
+      "@type": "/initia.ibchooks.v1.MsgUpdateACL",
+      "authority": "init1gz9n8jnu9fgqw7vem9ud67gqjk5q4m2w0aejne",
+      "address": "init120va2qy4f0u3l0y5hkjr7hzpgwhs76rnrqhz7g",
+      "allowed": true
+    }
+  ]
+}
+```
+
+### 2. Execute Msg
+
+```bash
+ minitiad tx opchild execute-messages ./execute-allow-hook.json --from {admin-key} --chain-id yominet-1 --node http://rpc-yominet-1.anvil.asia-southeast.initia.xyz --gas-adjustment 1.4 --gas auto
+```
