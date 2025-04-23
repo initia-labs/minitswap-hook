@@ -213,5 +213,5 @@ async function updateACL() {
 ### 2. Execute Msg
 
 ```bash
- minitiad tx opchild execute-messages ./execute-allow-hook.json --from {admin-key} --chain-id yominet-1 --node http://rpc-yominet-1.anvil.asia-southeast.initia.xyz --gas-adjustment 1.4 --gas auto
+minitiad tx opchild execute-messages ./execute-allow-hook.json --from {admin-key} --chain-id {chain-id} --node {rpc-endpoint} --gas-adjustment 1.4 --gas auto
 ```
