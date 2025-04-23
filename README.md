@@ -21,8 +21,26 @@ cargo build --target wasm32-unknown-unknown --release
 ### 3. Publish the contract without an admin
 
 ```typescript
-import { MsgStoreCode, MsgInstantiateContract } from '@initia/initia.js';
+import {
+  MsgStoreCode,
+  MsgInstantiateContract,
+  MnemonicKey,
+  RESTClient,
+  Wallet,
+} from '@initia/initia.js';
+
 import * as fs from 'fs';
+
+const rest = new RESTClient('<REST-URI>');
+
+const key = new MnemonicKey({
+  mnemonic: '<YOUR-MNEMONIC>',
+  // If you do not change cointype when you create, use 118 and false
+  coinType: 118,
+  eth: false,
+});
+
+const wallet = new Wallet(rest, key);
 
 async function storeCode() {
   const codeBytes = fs.readFileSync('<PATH_OF_CODEBYTES>').toString('base64'); // get .wasm file
@@ -53,7 +71,25 @@ async function instantiateContract() {
 ### 4. Update ACL (Allow IBC Hook)
 
 ```typescript
-import { MsgExecuteMessages, MsgUpdateACL } from '@initia/initia.js';
+import {
+  MsgExecuteMessages,
+  MsgUpdateACL,
+  MnemonicKey,
+  RESTClient,
+  Wallet,
+} from '@initia/initia.js';
+
+const rest = new RESTClient('<REST-URI>');
+
+const key = new MnemonicKey({
+  mnemonic: '<YOUR-MNEMONIC>',
+  // If you do not change cointype when you create, use 118 and false
+  coinType: 118,
+  eth: false,
+});
+
+const wallet = new Wallet(rest, key);
+
 async function updateACL() {
   const msg = new MsgExecuteMessages(key.accAddress, [
     // The key must be an admin key
@@ -105,8 +141,19 @@ initiad move build
 ### 4. Publish the module with the immutable option
 
 ```typescript
-import { MsgPublish } from '@initia/initia.js';
+import { MsgPublish, MnemonicKey, RESTClient, Wallet } from '@initia/initia.js';
 import * as fs from 'fs';
+
+const rest = new RESTClient('<REST-URI>');
+
+const key = new MnemonicKey({
+  mnemonic: '<YOUR-MNEMONIC>',
+  // If you do not change cointype when you create, use 118 and false
+  coinType: 118,
+  eth: false,
+});
+
+const wallet = new Wallet(rest, key);
 
 async function publishModule() {
   const codeBytes = fs.readFileSync('<PATH_OF_CODEBYTES>').toString('base64'); // get .mv file
@@ -122,13 +169,33 @@ async function publishModule() {
 ### 5. Update ACL (Allow IBC Hook)
 
 ```typescript
-import { MsgExecuteMessages, MsgUpdateACL } from '@initia/initia.js';
+import {
+  MsgExecuteMessages,
+  MsgUpdateACL,
+  MnemonicKey,
+  RESTClient,
+  Wallet,
+  AccAddress,
+} from '@initia/initia.js';
+
+const rest = new RESTClient('<REST-URI>');
+
+const key = new MnemonicKey({
+  mnemonic: '<YOUR-MNEMONIC>',
+  // If you do not change cointype when you create, use 118 and false
+  coinType: 118,
+  eth: false,
+});
+
+const wallet = new Wallet(rest, key);
+
 async function updateACL() {
   const msg = new MsgExecuteMessages(key.accAddress, [
     // The key must be an admin key
     new MsgUpdateACL(
       'init1gz9n8jnu9fgqw7vem9ud67gqjk5q4m2w0aejne',
-      '<HOOK_MODULE_ADDR>',
+      // Address must be bech32 address
+      AccAddress.fromHex('<HOOK_MODULE_ADDR>'),
       true,
     ),
   ]);
@@ -156,8 +223,23 @@ solcjs ./MinitswapHook.sol --bin
 ### 3. Publish the contract
 
 ```typescript
-import { MsgCreate } from '@initia/initia.js';
+import {
+  MsgCreate,
+  MnemonicKey,
+  RESTClient,
+  Wallet,
+  AccAddress,
+} from '@initia/initia.js';
 import * as fs from 'fs';
+
+const key = new MnemonicKey({
+  mnemonic: '<YOUR-MNEMONIC>',
+  // If you do not change cointype when you create, use 118 and false
+  coinType: 118,
+  eth: false,
+});
+
+const wallet = new Wallet(rest, key);
 
 async function instantiateContract() {
   const msg = new MsgCreate(
@@ -176,13 +258,33 @@ async function instantiateContract() {
 ### 4. Update ACL (Allow IBC Hook)
 
 ```typescript
-import { MsgExecuteMessages, MsgUpdateACL } from '@initia/initia.js';
+import {
+  MsgExecuteMessages,
+  MsgUpdateACL,
+  MnemonicKey,
+  RESTClient,
+  Wallet,
+  AccAddress,
+} from '@initia/initia.js';
+
+const rest = new RESTClient('<REST-URI>');
+
+const key = new MnemonicKey({
+  mnemonic: '<YOUR-MNEMONIC>',
+  // If you do not change cointype when you create, use 118 and false
+  coinType: 118,
+  eth: false,
+});
+
+const wallet = new Wallet(rest, key);
+
 async function updateACL() {
   const msg = new MsgExecuteMessages(key.accAddress, [
     // The key must be an admin key
     new MsgUpdateACL(
       'init1gz9n8jnu9fgqw7vem9ud67gqjk5q4m2w0aejne',
-      '<HOOK_MODULE_ADDR>',
+      // Address must be bech32 address
+      AccAddress.fromHex('<HOOK_CONTRACT_ADDR>'),
       true,
     ),
   ]);
