@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: SEE LICENSE IN LICENSE
-pragma solidity ^0.8.24;
+pragma solidity ^0.8.25;
 import "./Strings.sol";
 import "./interface/ICosmos.sol";
 import "./interface/IERC20.sol";
@@ -32,6 +32,6 @@ contract MinitswapHook {
                 '"}}'
             )
         );
-        COSMOS_CONTRACT.execute_cosmos(message);
+        COSMOS_CONTRACT.execute_cosmos(message, 300000);
     }
 }
