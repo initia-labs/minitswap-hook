@@ -31,7 +31,9 @@ import {
 
 import * as fs from 'fs';
 
-const rest = new RESTClient('<REST-URI>');
+const rest = new RESTClient('<REST-URI>', {
+  gasPrices: '0gas', // if you are using admin key, remove this
+});
 
 const key = new MnemonicKey({
   mnemonic: '<YOUR-MNEMONIC>',
@@ -79,7 +81,9 @@ import {
   Wallet,
 } from '@initia/initia.js';
 
-const rest = new RESTClient('<REST-URI>');
+const rest = new RESTClient('<REST-URI>', {
+  gasPrices: '0gas',
+});
 
 const key = new MnemonicKey({
   mnemonic: '<YOUR-MNEMONIC>',
@@ -144,7 +148,9 @@ initiad move build
 import { MsgPublish, MnemonicKey, RESTClient, Wallet } from '@initia/initia.js';
 import * as fs from 'fs';
 
-const rest = new RESTClient('<REST-URI>');
+const rest = new RESTClient('<REST-URI>', {
+  gasPrices: '0gas', // if you are using admin key, remove this
+});
 
 const key = new MnemonicKey({
   mnemonic: '<YOUR-MNEMONIC>',
@@ -178,7 +184,9 @@ import {
   AccAddress,
 } from '@initia/initia.js';
 
-const rest = new RESTClient('<REST-URI>');
+const rest = new RESTClient('<REST-URI>', {
+  gasPrices: '0gas',
+});
 
 const key = new MnemonicKey({
   mnemonic: '<YOUR-MNEMONIC>',
@@ -232,6 +240,10 @@ import {
 } from '@initia/initia.js';
 import * as fs from 'fs';
 
+const rest = new RESTClient('<REST-URI>', {
+  gasPrices: '0gas', // if you are using admin key, remove this
+});
+
 const key = new MnemonicKey({
   mnemonic: '<YOUR-MNEMONIC>',
   // If you do not change cointype when you create, use 118 and false
@@ -267,7 +279,9 @@ import {
   AccAddress,
 } from '@initia/initia.js';
 
-const rest = new RESTClient('<REST-URI>');
+const rest = new RESTClient('<REST-URI>', {
+  gasPrices: '0gas',
+});
 
 const key = new MnemonicKey({
   mnemonic: '<YOUR-MNEMONIC>',
